@@ -11,5 +11,8 @@
     "@playwright/test": "^1.39.0",
     "@types/node": "^20.8.5",
     "playwright-slack-report": "^1.1.24"
+  },
+  "dependencies": {
+    "mailslurp-client": "^15.17.3"
   }
 }

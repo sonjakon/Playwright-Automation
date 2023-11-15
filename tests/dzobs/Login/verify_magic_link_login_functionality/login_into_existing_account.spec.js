@@ -1,19 +1,29 @@
 import { test, expect } from '@playwright/test';
 
+test.slow();
+
 test('login into existing account', async ({ page }) => {
     await page.goto('https://www.dzobs.com/');
     await page.getByRole('button', { name: 'Prijava' }).click();
-    await page.getByPlaceholder('Email').click();
-    await page.getByPlaceholder('Email').fill('koncar.sonja94@gmail.com');
-    await page.getByRole('button', { name: 'Pošalji magični link' }).click();
 
-    await page.goto('https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=AVQVeyxM_FU2JmmmMyJ0yK0sVU8br3rV3CI4ZEEpBiUqgDJtRJCb9kEzut4Jpu8lM2w-dOGW8l2xWA&theme=glif&flowName=GlifWebSignIn&flowEntry=ServiceLogin');
-    await page.getByRole('link', { name: 'koncar.sonja94@gmail.com' }).click();
-    await page.locator('input[name="password"]').click();
-    await page.locator('input[name="password"]').fill('SonjaKoncar12*');
-    await page.getByRole('button', { name: 'Next' }).click();
-    page.locator('zA yO');
-    await page.getByRole('button', { name: 'Prijavi se' }).click();
+    await page.waitForURL('https://www.dzobs.com/auth/signin?redirect=https://www.dzobs.com/');
+
+    await page.getByPlaceholder('Email').click();
+    await page.getByPlaceholder('Email').fill('sonjatests@blondmail.com');
+    await page.getByRole('button', { name: 'Pošalji magični link' }).click();
+    await page.getByText('Login link poslan na email');
+
+    await page.pause()
+
+    await page.goto('https://inboxes.com/');
+    await page.getByRole('button', { name: 'Get my first inbox! arrow right' }).click();
+    await page.getByPlaceholder('jane1034').click();
+    await page.getByPlaceholder('jane1034').fill('sonjatests');
+    await page.getByRole('button', { name: 'Add Inbox' }).click();
+    await page.getByRole('cell', { name: 'Prijavi se na Dzobs.com - [https://i.ibb.co/NWrW3GV/dzobs-logo-...' }).first().click();
+    const page1Promise = page.waitForEvent('popup');
+    await page.getByRole('link', { name: 'Prijavi se' }).click();
+    const page1 = await page1Promise;
 
     await expect(page.getByText('Odjavi se')).toBeVisible();
 });
