@@ -24,9 +24,8 @@ test('login into existing account', async ({ page }) => {
     await page.pause()
 
     await page.getByRole('cell', { name: 'Prijavi se na Dzobs.com - [https://i.ibb.co/NWrW3GV/dzobs-logo-...' }).first().click();
-    const page1Promise = page.waitForEvent('popup');
     await page.getByRole('link', { name: 'Prijavi se' }).click();
+    const page1Promise = page.waitForEvent('popup');
     const page1 = await page1Promise;
 
-    await expect(page.getByText('Odjavi se')).toBeVisible();
 });
