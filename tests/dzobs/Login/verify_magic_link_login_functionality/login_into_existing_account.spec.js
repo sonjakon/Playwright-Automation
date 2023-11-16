@@ -13,7 +13,7 @@ test('login into existing account', async ({ page }) => {
     await page.getByRole('button', { name: 'Pošalji magični link' }).click();
     await page.getByText('Login link poslan na email');
 
-    await page.pause()
+
 
     await page.goto('https://inboxes.com/');
     await page.getByRole('button', { name: 'Get my first inbox! arrow right' }).click();
@@ -27,5 +27,5 @@ test('login into existing account', async ({ page }) => {
     await page.getByRole('link', { name: 'Prijavi se' }).click();
     const page1Promise = page.waitForEvent('popup');
     const page1 = await page1Promise;
-
+    await expect(page.getByRole('button', { name: 'Odjavi se' })).toBeVisible;
 });
