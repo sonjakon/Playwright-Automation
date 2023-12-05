@@ -17,6 +17,6 @@ test('see review as existing user', async ({ page }) => {
 
     await test.step("verify button functionality", async () => {
         await page.getByRole('button', { name: 'Ostavi recenziju' }).click();
-        await expect(page.getByRole('button', { name: 'Pošalji' })).toBeVisible();
+        await expect(page.getByText('Pošalji', { exact: true })).toBeVisible();
     })
 });
