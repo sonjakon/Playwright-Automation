@@ -9,7 +9,7 @@ test('see review as new user', async ({ page }) => {
     })
 
     await test.step("verify the page", async () => {
-        await expect(page.locator('lg:px-0 w-full m-auto mb-8')).toBeHidden();
+        await expect(page.locator('.lg\\:px-0.w-full.m-auto.mb-8')).toBeHidden();
         await expect(page.getByRole('button', { name: 'Ostavi recenziju' })).toBeVisible();
     })
 

@@ -13,7 +13,7 @@ test('see review as existing user with previously left review', async ({ page })
     })
 
     await test.step("verify the page", async () => {
-        await expect(page.locator('lg:px-0 w-full m-auto mb-8')).toBeVisible();
+        await expect(page.locator('.lg\\:px-0.w-full.m-auto.mb-8')).toBeVisible();
     })
 
 });
