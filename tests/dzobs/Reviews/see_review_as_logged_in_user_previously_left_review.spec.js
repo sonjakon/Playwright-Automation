@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-test.use({ storageState: 'tests/dzobs/auth/admin.spec.json' });
+test.use({ storageState: 'tests/dzobs/auth/user_with_review.spec.json' });
 
-test('see review as existing user with previously left review', async ({ page }) => {
+test('see review as existing user with previously left review - user should be presented a chronological view of the reviews', async ({ page }) => {
 
     test.slow();
 
@@ -12,7 +12,7 @@ test('see review as existing user with previously left review', async ({ page })
         await page.getByRole('link', { name: 'Pogledaj recenzije' }).click();
     })
 
-    await test.step("verify the page", async () => {
+    await test.step("verify reviews are visible", async () => {
         await expect(page.locator('.lg\\:px-0.w-full.m-auto.mb-8')).toBeVisible();
     })
 

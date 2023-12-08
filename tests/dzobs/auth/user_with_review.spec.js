@@ -1,6 +1,6 @@
 import { test as setup, expect } from '@playwright/test';
 
-const adminFile = 'tests/dzobs/auth/admin.spec.json';
+const user_with_reviewFile = 'tests/dzobs/auth/user_with_review.spec.json';
 
 setup('authenticate as user with previously left review', async ({ page }) => {
 
@@ -30,5 +30,5 @@ setup('authenticate as user with previously left review', async ({ page }) => {
         await expect(page1.getByRole('button', { name: 'Odjavi se' })).toBeVisible();
     })
 
-    await page.context().storageState({ path: adminFile });
+    await page.context().storageState({ path: user_with_reviewFile });
 });
