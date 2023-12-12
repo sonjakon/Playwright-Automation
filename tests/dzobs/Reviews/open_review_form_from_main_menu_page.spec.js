@@ -11,6 +11,6 @@ test('open review form from main menu page - user should be directed to reviews 
     })
 
     await test.step("verify review form is opened", async () => {
-        await expect(page.locator('.w-full.space-y-4')).toBeVisible();
+        await expect(page.locator('form.w-full.space-y-4')).toBeVisible();
     })
 });
