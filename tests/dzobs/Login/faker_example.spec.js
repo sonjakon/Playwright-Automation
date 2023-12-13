@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker'
 
-test('login into existing account', async ({ page }) => {
+test('log into a new account', async ({ page }) => {
 
     test.slow();
 
