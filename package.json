@@ -13,6 +13,7 @@
     "playwright-slack-report": "^1.1.24"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.3.1",
     "mailslurp-client": "^15.17.3"
   }
 }
