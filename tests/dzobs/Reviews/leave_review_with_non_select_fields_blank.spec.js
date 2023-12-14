@@ -13,7 +13,8 @@ test('leave a review with non-select fields empty - error message under all fiel
         await page.getByPlaceholder('Filtriraj po nazivu').click();
         await page.getByPlaceholder('Filtriraj po nazivu').fill('am2');
         await page.getByRole('button', { name: 'Filtriraj' }).click();
-        await page.getByRole('button', { name: 'Iskustva (6)' }).click();
+        await page.getByRole('link', { name: 'AM2Studio AM2Studio premium' }).click();
+        await page.getByRole('link', { name: 'Iskustva' }).click();
         await page.getByRole('button', { name: 'Podjeli svoje iskustvo' }).first().click();
     })
 
