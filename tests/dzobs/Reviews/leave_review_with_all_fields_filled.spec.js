@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker'
 
-test('leave a review with non-select fields empty - error message under all fields: "Obligatory field"', async ({ page }) => {
+test('leave a review with all fields filled - review sent for approval', async ({ page }) => {
 
     test.slow();
 
