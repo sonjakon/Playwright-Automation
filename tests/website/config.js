@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl: "https://peach-dianemarie-52.tiiny.site",
+    baseUrl: "https://personal-website-pi-jade.vercel.app/",
 };
