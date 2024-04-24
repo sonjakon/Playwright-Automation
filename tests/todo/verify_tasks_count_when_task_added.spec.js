@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test')
 const { baseUrl } = require('./config.js');
 
-test('verify tasks count', async ({ page }) => {
+test('verify tasks count when task added', async ({ page }) => {
     await page.goto(baseUrl);
     await page.getByTestId('text-input').fill('jedan');
     await page.getByTestId('text-input').press('Enter');
