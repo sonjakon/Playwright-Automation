@@ -4,6 +4,8 @@ This repository contains:
 
 - Playwright Automation tests for **Dzobs.com** that are also covered with previous manual testing
 - Playwright Automation tests for **Personal Website** repository
+- Playwright Automation tests for **Todo List** repository
+- Playwright Automation tests for **Contact List App** that are also covered with previous manual testing
 
 ## Steps to run the Dzobs.com tests
 
