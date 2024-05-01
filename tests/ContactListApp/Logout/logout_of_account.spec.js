@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('logout of account - successful logout', async ({ page }) => {
 
     await test.step("log in", async () => {
         await page.goto('https://thinking-tester-contact-list.herokuapp.com/');

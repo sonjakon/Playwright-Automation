@@ -1,23 +1,23 @@
 import { test, expect } from '@playwright/test';
+import { setup as authSetup } from './auth/auth.setup.js';
 
-test('test', async ({ page }) => {
+let page;
 
-    await test.step("log in", async () => {
-        await page.goto('https://thinking-tester-contact-list.herokuapp.com/');
-        await page.getByPlaceholder('Email').click();
-        await page.getByPlaceholder('Email').fill('koncar.sonja94@gmail.com');
-        await page.getByPlaceholder('Password').click();
-        await page.getByPlaceholder('Password').fill('sonjatests123');
-        await page.getByRole('button', { name: 'Submit' }).click();
-    })
+test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
+    page = await context.newPage();
+    await authSetup({ page });
+});
+
+test('delete contact - contact deleted', async () => {
 
     await test.step("delete contact", async () => {
         await page.getByRole('cell', { name: 'Ime Prezime' }).click();
         await page.getByRole('button', { name: 'Delete Contact' }).click();
         page.on('dialog', dialog => dialog.accept());
-    })
+    });
 
     await test.step("confirm deletion of contact", async () => {
         await expect(page.getByRole('cell', { name: 'Ime Prezime' })).toBeHidden();
-    })
+    });
 });

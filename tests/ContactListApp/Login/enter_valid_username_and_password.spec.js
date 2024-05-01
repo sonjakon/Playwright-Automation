@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('enter a valid username and password - successful login', async ({ page }) => {
     await page.goto('https://thinking-tester-contact-list.herokuapp.com/');
     await page.getByPlaceholder('Email').click();
     await page.getByPlaceholder('Email').fill('koncar.sonja94@gmail.com');

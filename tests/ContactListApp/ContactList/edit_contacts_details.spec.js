@@ -1,34 +1,27 @@
 import { test, expect } from '@playwright/test';
+import { setup as authSetup } from './auth/auth.setup.js';
 
-test('test', async ({ page }) => {
+let page;
 
-    await test.step("log in", async () => {
-        await page.goto('https://thinking-tester-contact-list.herokuapp.com/');
-        await page.getByPlaceholder('Email').click();
-        await page.getByPlaceholder('Email').fill('koncar.sonja94@gmail.com');
-        await page.getByPlaceholder('Password').click();
-        await page.getByPlaceholder('Password').fill('sonjatests123');
-        await page.getByRole('button', { name: 'Submit' }).click();
-    })
+test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
+    page = await context.newPage();
+    await authSetup({ page });
+});
+
+test('edit contact details - contact details updated', async ({ page }) => {
 
     await test.step("edit contact from the list", async () => {
-        await page.getByRole('cell', { name: 'Ime Prezime' }).click();
-        await page.getByRole('button', { name: 'Edit Contact' }).click();
-
-        await page.waitForTimeout(3000);
-
-        await page.getByLabel('Street Address 2:').click();
-        await page.getByLabel('Street Address 2:').clear();
-        await page.getByLabel('Street Address 2:').fill('Treca Adresa III');
-        await page.getByRole('button', { name: 'Submit' }).click();
+        await page.click('text="Ime Prezime"');
+        await page.click('text="Edit Contact"');
+        await page.waitForSelector('label:has-text("Street Address 2:")');
+        await page.fill('label:has-text("Street Address 2:") input', 'Treca Adresa III');
+        await page.click('button:has-text("Submit")');
     })
 
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     await test.step("confirm contact details are updated", async () => {
-        const spanElement = await page.$('#street2');
-        const textContent = await page.evaluate(element => element.textContent, spanElement);
-
-        expect(textContent).toBe('Treca Adresa III');
+        await expect(page.getByRole('cell', { name: 'Treca Adresa III' })).toBeVisible;
     })
 });
