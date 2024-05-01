@@ -22,6 +22,6 @@ test('edit contact details - contact details updated', async ({ page }) => {
     await page.waitForLoadState('networkidle');
 
     await test.step("confirm contact details are updated", async () => {
-        await expect(page.getByRole('cell', { name: 'Treca Adresa III' })).toBeVisible;
+        await expect(page.getByRole('cell', { name: 'Treca Adresa III' })).toBeVisible();
     })
 });
